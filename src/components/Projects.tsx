@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Projects = () => {
   const projects = [
@@ -59,86 +60,111 @@ const Projects = () => {
     <section id="projects" className="py-20 lg:py-32 bg-secondary/20">
       <div className="container mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <h2 className="text-display font-bold mb-4">
             Featured <span className="bg-text-gradient bg-clip-text text-transparent">Projects</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             A showcase of my recent work and side projects
           </p>
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <Card 
+            <motion.div
               key={index}
-              className="group bg-card-gradient border-border/50 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-glow overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5 }}
             >
-              {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
+              <Card className="group bg-card-gradient border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-glow overflow-hidden h-full">
+                {/* Project Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <motion.img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <motion.div 
+                    className="absolute inset-0 bg-primary/10"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </div>
 
-              <CardHeader>
-                <CardTitle className="text-heading text-foreground group-hover:text-primary transition-colors duration-300">
-                  {project.title}
-                </CardTitle>
-              </CardHeader>
+                <CardHeader>
+                  <CardTitle className="text-heading text-foreground group-hover:text-primary transition-colors duration-300">
+                    {project.title}
+                  </CardTitle>
+                </CardHeader>
 
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground leading-relaxed">
-                  {project.description}
-                </p>
+                <CardContent className="space-y-4 flex-1 flex flex-col">
+                  <p className="text-muted-foreground leading-relaxed flex-1">
+                    {project.description}
+                  </p>
 
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech, techIndex) => (
-                    <Badge 
-                      key={techIndex}
-                      variant="outline"
-                      className="text-xs border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((tech, techIndex) => (
+                      <Badge 
+                        key={techIndex}
+                        variant="outline"
+                        className="text-xs border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex gap-3 pt-4">
+                    <Button 
+                      asChild
+                      size="sm" 
+                      className="flex-1 bg-primary hover:bg-primary-glow text-primary-foreground"
                     >
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex gap-3 pt-4">
-                  <Button 
-                    asChild
-                    size="sm" 
-                    className="flex-1 bg-primary hover:bg-primary-glow text-primary-foreground"
-                  >
-                    <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Live Demo
-                    </a>
-                  </Button>
-                  <Button 
-                    asChild
-                    variant="outline" 
-                    size="sm"
-                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-                  >
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="w-4 h-4" />
-                    </a>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+                      <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        Live Demo
+                      </a>
+                    </Button>
+                    <Button 
+                      asChild
+                      variant="outline" 
+                      size="sm"
+                      className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                    >
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <Github className="w-4 h-4" />
+                      </a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
 
         {/* View More Button */}
-        <div className="text-center mt-12">
+        <motion.div 
+          className="text-center mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+        >
           <Button 
             variant="outline" 
             size="lg"
@@ -147,7 +173,7 @@ const Projects = () => {
             View All Projects on GitHub
             <Github className="ml-2 h-4 w-4" />
           </Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

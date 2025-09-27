@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
+import { motion } from "framer-motion";
 import developerPortrait from "@/assets/developer-portrait.jpg";
 
 const Hero = () => {
@@ -12,15 +13,47 @@ const Hero = () => {
     <section className="min-h-screen flex items-center justify-center bg-hero-gradient relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <motion.div 
+          className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.6, 0.3]
+          }}
+          transition={{ 
+            duration: 4, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+        />
+        <motion.div 
+          className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            opacity: [0.2, 0.4, 0.2]
+          }}
+          transition={{ 
+            duration: 4, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 2
+          }}
+        />
       </div>
       
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           {/* Text Content */}
-          <div className="flex-1 text-center lg:text-left">
-            <div className="animate-fade-in">
+          <motion.div 
+            className="flex-1 text-center lg:text-left"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               <h1 className="text-hero font-bold mb-6 leading-tight">
                 Hi, I'm{" "}
                 <span className="bg-text-gradient bg-clip-text text-transparent">
@@ -34,10 +67,15 @@ const Hero = () => {
                 I create exceptional digital experiences through clean code, intuitive design, 
                 and cutting-edge technology. Let's build something amazing together.
               </p>
-            </div>
+            </motion.div>
             
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8 animate-fade-in delay-300">
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
               <Button 
                 onClick={() => scrollToSection('projects')}
                 size="lg" 
@@ -54,46 +92,78 @@ const Hero = () => {
                 <Download className="mr-2 h-4 w-4" />
                 Download CV
               </Button>
-            </div>
+            </motion.div>
             
             {/* Social Links */}
-            <div className="flex gap-6 justify-center lg:justify-start animate-fade-in delay-500">
-              <a 
-                href="https://github.com" 
+            <motion.div 
+              className="flex gap-6 justify-center lg:justify-start"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <motion.a 
+                href="https://github.com/yourusername" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors duration-300 hover:scale-110 transform"
+                className="text-muted-foreground hover:text-primary transition-colors duration-300"
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <Github className="h-6 w-6" />
-              </a>
-              <a 
-                href="https://linkedin.com" 
+              </motion.a>
+              <motion.a 
+                href="https://linkedin.com/in/yourusername" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors duration-300 hover:scale-110 transform"
+                className="text-muted-foreground hover:text-primary transition-colors duration-300"
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <Linkedin className="h-6 w-6" />
-              </a>
-              <a 
-                href="mailto:alex@example.com" 
-                className="text-muted-foreground hover:text-primary transition-colors duration-300 hover:scale-110 transform"
+              </motion.a>
+              <motion.a 
+                href="mailto:your.email@example.com" 
+                className="text-muted-foreground hover:text-primary transition-colors duration-300"
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <Mail className="h-6 w-6" />
-              </a>
-            </div>
-          </div>
+              </motion.a>
+            </motion.div>
+          </motion.div>
           
           {/* Profile Image */}
-          <div className="flex-shrink-0 animate-fade-in delay-700">
+          <motion.div 
+            className="flex-shrink-0"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
             <div className="relative">
-              <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl scale-110"></div>
-              <img
+              <motion.div 
+                className="absolute inset-0 bg-primary/20 rounded-full blur-2xl scale-110"
+                animate={{ 
+                  scale: [1.1, 1.2, 1.1],
+                  opacity: [0.2, 0.3, 0.2]
+                }}
+                transition={{ 
+                  duration: 3, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+              />
+              <motion.img
                 src={developerPortrait}
                 alt="Alex Johnson - Full-Stack Developer"
-                className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-full object-cover shadow-elegant border-4 border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-105"
+                className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-full object-cover shadow-elegant border-4 border-primary/20"
+                whileHover={{ 
+                  scale: 1.05,
+                  borderColor: "hsl(var(--primary) / 0.4)"
+                }}
+                transition={{ duration: 0.3 }}
               />
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       
