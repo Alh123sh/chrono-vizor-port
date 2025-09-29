@@ -160,10 +160,10 @@ const Hero = () => {
               <motion.img
                 src={developerPortrait}
                 alt="Shueyb Hussein - Full-Stack Developer"
-                className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-full object-cover shadow-elegant border-4 border-primary/20"
+                className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-full object-contain object-top shadow-elegant border-4 border-primary/20 bg-gradient-to-b from-background to-muted"
                 whileHover={{ 
                   scale: 1.05,
-                  borderColor: "hsl(var(--primary) / 0.4)"
+                  borderColor: "rgb(66 153 225 / 0.4)"
                 }}
                 transition={{ duration: 0.3 }}
               />
