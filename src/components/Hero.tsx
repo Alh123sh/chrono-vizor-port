@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "framer-motion";
-import developerPortrait from "@/assets/developer-portrait.jpg";
+import developerPortrait from "@/assets/shueyb-portfolio-image.jpg";
 
 const Hero = () => {
   const scrollToSection = (sectionId: string) => {
