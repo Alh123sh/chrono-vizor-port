@@ -56,7 +56,7 @@ const Hero = () => {
             >
               <h1 className="text-hero font-bold mb-6 leading-tight">
                 Hi, I'm{" "}
-                <span className="bg-text-gradient bg-clip-text text-transparent">
+                <span className="text-primary font-extrabold">
                   Shueyb Hussein
                 </span>
               </h1>
@@ -144,11 +144,11 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="relative">
+            <div className="relative w-80 h-80 lg:w-96 lg:h-96">
               <motion.div 
-                className="absolute inset-0 bg-primary/20 rounded-full blur-2xl scale-110"
+                className="absolute inset-0 bg-primary/20 rounded-full blur-2xl"
                 animate={{ 
-                  scale: [1.1, 1.2, 1.1],
+                  scale: [1, 1.1, 1],
                   opacity: [0.2, 0.3, 0.2]
                 }}
                 transition={{ 
@@ -160,10 +160,10 @@ const Hero = () => {
               <motion.img
                 src={developerPortrait}
                 alt="Shueyb Hussein - Full-Stack Developer"
-                className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-full object-contain object-top shadow-elegant border-4 border-primary/20 bg-gradient-to-b from-background to-muted"
+                className="relative w-full h-full rounded-full object-cover object-[center_20%] shadow-elegant border-4 border-primary/30 bg-background"
                 whileHover={{ 
                   scale: 1.05,
-                  borderColor: "rgb(66 153 225 / 0.4)"
+                  borderColor: "hsl(var(--primary) / 0.5)"
                 }}
                 transition={{ duration: 0.3 }}
               />
